@@ -1,40 +1,57 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import Customer from './components/Customer';
+import React, {Component} from 'react';
 
-function App() {
+const customers = [
+  {
+  'id': 1,
+  'image': 'https://picsum.photos/200/300?random=1',
+  'name': '홍길동',
+  'birthday': '020504',
+  'gender': '남자',
+  'job': '대학생'
+  },
+  {
+  'id': 2,
+  'image': 'https://picsum.photos/200/300?random=2',
+  'name': '나훈아',
+  'birthday': '020504',
+  'gender': '남자',
+  'job': '대학생'
+  },
+  {
+  'id': 3,
+  'image': 'https://picsum.photos/200/300?random=3',
+  'name': '안난아',
+  'birthday': '020504',
+  'gender': '남자',
+  'job': '대학생'
+  }
+]
 
-  let post = '오늘의 노래';
-  let [제목, a] = useState(['제목', '장르', '코드']);
-  let [좋아요, 변경] = useState(0);
-
-  return (
-    <div className="App">
-      <div className="black-nav">
-        <h4>ReactBlog</h4>
+class App extends Component {
+  render() {
+    return (
+      <div> 
+        {
+          customers.map(c => {
+            return (
+              <Customer
+                key={c.id}
+                id={c.id}
+                image={c.image}
+                name={c.name}
+                birthday={c.birthday}
+                gender={c.gender}
+                job={c.job} 
+              />
+            )
+          })
+        }
       </div>
-
-      <button onClick={() => {
-        let copy = [...제목];
-        copy[0] = '맛있다';
-        a(제목);
-      }}>b</button>
-
-      <h4>{post}</h4>
-      <div className='list'>
-        <h4>{제목[0]} <span onClick={() => { 변경(좋아요 + 1) }}>❤️</span>{좋아요}</h4>
-        <p>2월 12일 발매</p>
-      </div>
-      <div className='list'>
-        <h4>{제목[1]}</h4>
-        <p>2월 12일 발매</p>
-      </div>
-      <div className='list'>
-        <h4>{제목[2]}</h4>
-        <p>2월 12일 발매</p>
-      </div>
-    </div>
-  );
+    )
+  }
 }
 
 export default App;
